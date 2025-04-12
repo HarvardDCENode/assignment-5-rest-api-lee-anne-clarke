@@ -77,12 +77,12 @@ router.post('/', upload.single('image'), async (req, res, next)=>{
 
   // Create a new BlogPost instance using the object above
 	try {
-    const blogPostSave = await BlogService.create(blogPost);
+    const blogPostSave = await BlogService.create(blogPostData);
 		res.status(201);
 		res.send(JSON.stringify(blogPostSave));
-	} catch(err){
-		console.log(err);
-		throw new Error("BlogPost save error", blogPost);
+	} catch(error){
+		console.log(error);
+		throw new Error("BlogPost save error", blogPostData);
 	}
 });
 
