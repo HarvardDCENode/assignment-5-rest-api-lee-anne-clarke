@@ -1,0 +1,59 @@
+//- blog.pug
+
+extends layout
+
+block content
+  
+  .row
+    .col-12.col-md-8
+      if blogPosts.length > 0
+        each blogPost in blogPosts
+         div
+           h2 
+            a(href='/blog/post/'+blogPost._id) #{blogPost.postTitle}
+
+           p.mb-0 
+            b Posted: 
+            | #{blogPost.createdAt}
+
+           if blogPost.updatedAt
+            p.mb-0  
+              b Updated: 
+              | #{blogPost.updatedAt}
+
+           div.pt-3.text-center
+            img(src=blogPost.imageUrl, width="550")
+
+            if blogPost.imgDescription
+              p
+                i Description: #{blogPost.imgDescription}
+            else 
+              p
+
+           p(style='white-space:nowrap; text-overflow:ellipsis; overflow:hidden') #{blogPost.postContent}
+
+           p 
+            a(href='/blog/post/'+blogPost._id) Read More
+
+           hr.my-4 
+      else
+        div
+          p No posts yet.
+
+
+    .col-12.col-md-4
+      h3 All Posts
+      if blogPosts.length > 0
+        ul
+          each blogPost in blogPosts
+            li 
+              a(href='/blog/post/'+blogPost._id) #{blogPost.postTitle}
+      else 
+          p No posts yet.
+      
+      hr
+
+      div
+        a.btn.btn-outline-primary(href='/blog/create/') Create New Post
+
+

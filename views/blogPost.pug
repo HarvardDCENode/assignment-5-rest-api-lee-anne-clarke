@@ -1,0 +1,38 @@
+//- blogPost.pug
+
+extends layout
+
+block content
+
+	.row
+		.col-md-12
+			h2 #{blogPost.postTitle}
+
+			div 
+				b Posted: 
+				| #{blogPost.createdAt}
+
+			if blogPost.updatedAt
+				p.mb-0  
+					b Updated: 
+					| #{blogPost.updatedAt}
+
+			div
+				p
+					a(href='/blog/post/'+blogPost._id+"/edit") Edit Post
+
+			div.text-center
+				img(src=blogPost.imageUrl, width="550")
+				if blogPost.imgDescription
+					p
+						i Description: #{blogPost.imgDescription}
+				else 
+					p
+
+			p #{blogPost.postContent}	
+
+			div
+				p
+					a(href='/blog') Return to blog
+
+

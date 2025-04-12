@@ -1,0 +1,38 @@
+//- newPost.pug
+
+extends layout
+
+block content
+
+  h2.mt-3 Create a Blog Post
+  .row
+    .col-md-6
+      form(action='/blog' method='post' enctype='multipart/form-data')
+
+        .form-group.mb-3
+          label(for='postTitle') 
+            b Post Title:
+          input#postTitle.form-control(type='text' name='postTitle' minlength='2' maxlength='80' required='true')
+
+        .form-group.mb-3
+          label(for='postContent') 
+            b Post Content:
+          textarea#postContent.form-control(style='min-height:200px' name='postContent' required='true')
+
+        .form-group.mb-3
+          label(for='image') 
+            b Image:
+          input#image.form-control(type='file' name='image' accept='image/png, image/jpeg, image/jpg, image/webp' required='true')
+
+        .form-group.mb-3
+          label(for='imgDescription') 
+            b Image Description:
+          input#imgDescription.form-control(type='text' name='imgDescription')
+
+        button.btn.btn-primary(type='submit') Create Post
+
+
+  div.py-3
+    p
+      a(href='/blog') Return to blog
+

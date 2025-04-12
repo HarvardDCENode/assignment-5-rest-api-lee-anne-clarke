@@ -1,0 +1,21 @@
+{
+  "name": "lac-assignment-4",
+  "version": "0.0.1",
+  "description": "Travel blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/www",
+    "start-dev": "nodemon --inspect bin/www"
+  },
+  "author": "Lee-Anne Clarke",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.18.3",
+    "mongoose": "^8.13.1",
+    "multer": "^1.4.5-lts.2",
+    "pug": "^3.0.2"
+  }
+}

@@ -1,0 +1,56 @@
+//- editPost.pug
+
+extends layout
+
+block content
+
+  .row
+     .col-md-6
+        h2 Edit Post
+        div 
+          b Title: 
+          | #{blogPost.postTitle}
+
+        div 
+          b Posted: 
+          | #{blogPost.createdAt}
+
+        if blogPost.updatedAt
+          div 
+            b Last Updated: 
+            | #{blogPost.updatedAt}
+
+        div.pt-3
+          img(src=blogPost.imageUrl, width="250")
+
+        form.pt-3(method='POST' action="/blog/post/"+blogPost._id+"/edit")
+
+          .form-group.mb-3
+            label(for='postTitle') Post Title:
+            input#postTitle.form-control(type='text', value=blogPost.postTitle name='postTitle' required='true')
+
+          .form-group.mb-3
+            label(for='postContent') Post Content:
+            textarea#postContent.form-control(style='min-height:200px' name='postContent' value=blogPost.postContent required='true') #{blogPost.postContent}
+
+          .form-group.mb-3
+            label(for='imgDescription') Image Description:
+            input#imgDescription.form-control(type='text', value=blogPost.imgDescription name='imgDescription')
+
+          .form-group
+            label(for='image')
+            input#image.form-control(type='hidden', name='_id' value=blogPost._id)
+
+          button.btn.btn-primary(type='submit') Update Post
+        
+
+        form.my-4(method='GET' action="/blog/post/"+blogPost._id+"/delete")
+          button.btn.btn-danger(type='submit') Delete Post
+
+        div
+          p
+            a(href="/blog/post/"+blogPost._id) Return to blog post
+          p
+            a(href='/blog') Return to blog
+
+
