@@ -9,6 +9,7 @@ const BlogPost = require('../models/blogPostModel');
 const upload = multer({ dest: 'public/img' });
 
 
+// list
 // Main page
 router.get('/', (req, res, next)=>{
 
@@ -34,6 +35,7 @@ router.get('/create', (req, res, next)=>{
 
 
 
+// create
 // Create post - form
 router.post('/', upload.single('image'), (req, res, next)=>{
   let imgPath = `/static/img/${req.file.filename}`;
@@ -61,6 +63,7 @@ router.post('/', upload.single('image'), (req, res, next)=>{
 
 
 
+// find
 // Blog post page
 router.get('/post/:blogpostid', (req, res, next)=>{
   BlogPost.findOne({'_id': req.params.blogpostid})
@@ -75,7 +78,7 @@ router.get('/post/:blogpostid', (req, res, next)=>{
 
 
 
-// Blog post edit page
+// Edit post - page
 router.get('/post/:blogpostid/edit', (req, res, next)=>{
   BlogPost.findOne({'_id': req.params.blogpostid})
     .then((blogPost)=>{
@@ -89,7 +92,8 @@ router.get('/post/:blogpostid/edit', (req, res, next)=>{
 
 
 
-// Blog post edit page - edit form
+// update
+// Edit post - form
 router.post('/post/:blogpostid/edit', (req, res, next)=>{
   BlogPost.findOne({'_id': req.params.blogpostid})
     .then((blogPost)=>{
@@ -111,6 +115,7 @@ router.post('/post/:blogpostid/edit', (req, res, next)=>{
 
 
 
+// delete
 // Blog post edit page - delete form
 router.get('/post/:blogpostid/delete', (req, res, next)=>{
   BlogPost.deleteOne({'_id': req.params.blogpostid})
