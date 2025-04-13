@@ -29,7 +29,7 @@ router.use((req, res, next)=>{
 router.get('/', (req, res, next)=>{
 
   // View all blog posts, sorted by most recently created
-  BlogPost.list()
+  BlogService.list()
     .sort({ createdAt: 'desc' })
     .then(blogPosts => {
       res.status(200);
@@ -44,7 +44,7 @@ router.get('/', (req, res, next)=>{
 
 // find: Blog post page
 router.get('/post/:blogpostid', (req, res, next)=>{
-  BlogPost.find(req.params.blogpostid)
+  BlogService.find(req.params.blogpostid)
     .then((blogPost) => {
       console.log(`Found posts: ${blogPost}`);
       res.status(200);
@@ -97,7 +97,7 @@ router.post('/', upload.single('image'), async (req, res, next)=>{
 router.put('/post/:blogpostid/edit', (req, res, next)=>{
   console.log(`putting ${req.params.blogpostid}`);
   let putdata = req.body;
-  BlogPost.update(req.params.blogpostid, putdata)
+  BlogService.update(req.params.blogpostid, putdata)
     .then((updatedBlogPost)=>{
       res.status(200);
       res.send(JSON.stringify(updatedBlogPost));
@@ -112,7 +112,7 @@ router.put('/post/:blogpostid/edit', (req, res, next)=>{
 // delete: Delete post form
 router.delete('/post/:blogpostid/delete', (req, res, next)=>{
   let id = req.params.blogpostid;
-  PhotoService.delete(req.params.blogpostid)
+  BlogService.delete(req.params.blogpostid)
     .then((blogPost) => {
       console.log(`Deleted post: ${id}`);
       res.status(200);
@@ -133,3 +133,4 @@ router.use((error, req, res, next) => {
   res.end();
 });
 
+module.exports = router;
