@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing the API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body class="vsc-initialized">
+    <div class="container">
+      <h3 class="pt-3">BlogPost API test</h3>
+      <p>This HTML/JS page tests the Blog API by listing all blog post photos; then creating, finding, modifying, and deleting a blog post photo using the REST API.</p>
+      <p>API endpoints, property names and values for the app are hardcoded in the client-side /js/api.js file linked in this HTML page.</p>
+      <p>See the console for output as the process completes.</p>
+
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+              <label for="image">Image:</label>
+              <input class="form-control" id="image" type="file" name="image">
+            </div>
+            <button class="btn btn-primary" id="testme" type="button">Test the API</button>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/api.js"></script>
+  </body>
+</html>

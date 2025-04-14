@@ -10,7 +10,7 @@ const BlogService = blogController.BlogService;
 
 router.use((req, res, next)=>{
   res.set({
-  // Allow any domain & allow REST methods we've implemented
+  // allow any domain, allow REST methods we've implemented
     'Access-Control-Allow-Origin':'*',
     'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS',
     "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers",
@@ -28,9 +28,8 @@ router.use((req, res, next)=>{
 // list: Main page
 router.get('/', (req, res, next)=>{
 
-  // View all blog posts, sorted by most recently created
+  // View all blog posts
   BlogService.list()
-    .sort({ createdAt: 'desc' })
     .then(blogPosts => {
       res.status(200);
       res.send(JSON.stringify(blogPosts));
@@ -58,12 +57,7 @@ router.get('/post/:blogpostid', (req, res, next)=>{
 
 
 
-// Create post page 
-// !! TODO !!
-
-
-
-// create: Create post form
+// create: Create post
 router.post('/', upload.single('image'), async (req, res, next)=>{
   const imgPath = "/static/img/" + (req.file ? req.file.filename : '');
 
@@ -76,24 +70,19 @@ router.post('/', upload.single('image'), async (req, res, next)=>{
   }
 
   // Create a new BlogPost instance using the object above
-	try {
+  try {
     const blogPostSave = await BlogService.create(blogPostData);
-		res.status(201);
-		res.send(JSON.stringify(blogPostSave));
-	} catch(error){
-		console.log(error);
-		throw new Error("BlogPost save error", blogPostData);
-	}
+    res.status(201);
+    res.send(JSON.stringify(blogPostSave));
+  } catch(err){
+    console.log(err);
+    throw new Error("Error", blogPostData);
+  }
 });
 
 
 
-// Edit post page
-// !! TODO !!
-
-
-
-// update: Edit post form
+// update: Edit post
 router.put('/post/:blogpostid/edit', (req, res, next)=>{
   console.log(`putting ${req.params.blogpostid}`);
   let putdata = req.body;
@@ -109,7 +98,7 @@ router.put('/post/:blogpostid/edit', (req, res, next)=>{
 
 
 
-// delete: Delete post form
+// delete: Delete post
 router.delete('/post/:blogpostid/delete', (req, res, next)=>{
   let id = req.params.blogpostid;
   BlogService.delete(req.params.blogpostid)

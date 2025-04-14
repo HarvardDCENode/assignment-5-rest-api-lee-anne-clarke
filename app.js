@@ -3,6 +3,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const blog = require('./routes/blog');
 const apiblog = require('./routes/api/api.blog');
 const mongoose = require('mongoose');
 
@@ -27,11 +28,18 @@ app.use(express.json());
 // Static file path (where the images will be stored)
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+// Tells express where to find the views
+app.set('views', path.join(__dirname, 'views'));
+
+// Tells express to use pug as the template engine
+app.set('view engine', 'pug');
+
 app.get('/', (req, res)=>{
   res.end("Placeholder middleware to demonstrate handling a request for the '/' root path")
 });
 
-// Mount the api router as middleware on the appropriate path
+// Mount the routers as middleware on the appropriate paths
+app.use('/blog', blog);
 app.use('/api/blog', apiblog);
 
 

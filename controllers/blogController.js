@@ -8,6 +8,7 @@ class BlogService {
 
   static list(){
     return BlogPost.find({})
+      .sort({ createdAt: 'desc' })
       .then((blogPosts)=>{
         return blogPosts;
       });
