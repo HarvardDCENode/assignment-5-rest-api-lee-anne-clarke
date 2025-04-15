@@ -1,6 +1,3 @@
-// this is the async/await version of the original api.js, which uses Promise syntax
-
-// wrap in IIFE to control scope
 (function(){
 
    const baseURL = 'http://localhost:8080';
@@ -17,7 +14,6 @@
         
 
         // Create form data object
-        // This section is for uploading a file to the REST API
         let input = document.querySelector('input[type="file"]')
         let data = new FormData()
         data.append('image', input.files[0]);
@@ -61,7 +57,7 @@
         console.log(updatedBlogPost);
         
 
-        // now find again to confirm that the imgDescription update was changed
+        // now find again to confirm that the imgDescription was changed
         let retrievedUpdatedBlogPost = await callAPI(
           'GET',
           `/api/blog/post/${updatedBlogPost._id}`, 
