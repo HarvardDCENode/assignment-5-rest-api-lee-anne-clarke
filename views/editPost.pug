@@ -23,7 +23,7 @@ block content
         div.pt-3
           img(src=blogPost.imageUrl, width="250")
 
-        form.pt-3(method='POST' action="/blog/post/"+blogPost._id+"/edit")
+        form.pt-3(method='POST' action="/blog/post/"+blogPost._id+"")
 
           .form-group.mb-3
             label(for='postTitle') Post Title:

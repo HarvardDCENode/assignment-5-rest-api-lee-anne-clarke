@@ -103,7 +103,7 @@ router.get('/post/:blogpostid/edit', (req, res, next)=>{
 
 // Blog post edit (form submission)
 router.post('/post/:blogpostid', (req, res, next)=>{
-  const data  = {
+  const data = {
     postTitle: req.body.postTitle,
     postContent: req.body.postContent,
     imgDescription: req.body.imgDescription
