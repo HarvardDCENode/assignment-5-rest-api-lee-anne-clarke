@@ -25,7 +25,7 @@ router.use((req, res, next)=>{
 
 
 
-// list: Main page
+// LIST: Main page
 router.get('/', (req, res, next)=>{
 
   // View all blog posts
@@ -41,13 +41,13 @@ router.get('/', (req, res, next)=>{
 
 
 
-// find: Blog post page
+// FIND: Blog post page
 router.get('/post/:blogpostid', (req, res, next)=>{
   BlogService.find(req.params.blogpostid)
     .then((blogPost) => {
       console.log(`Found posts: ${blogPost}`);
       res.status(200);
-      res.send(JSON.stringify(blogPost));
+      res.json(blogPost);
     })
     .catch((error) => {
      res.status(404);
@@ -57,7 +57,7 @@ router.get('/post/:blogpostid', (req, res, next)=>{
 
 
 
-// create: Create post
+// CREATE: Create post
 router.post('/', upload.single('image'), async (req, res, next)=>{
   const imgPath = "/static/img/" + (req.file ? req.file.filename : '');
 
@@ -82,8 +82,8 @@ router.post('/', upload.single('image'), async (req, res, next)=>{
 
 
 
-// update: Edit post
-router.put('/post/:blogpostid/edit', (req, res, next)=>{
+// UPDATE: Edit post
+router.put('/post/:blogpostid', (req, res, next)=>{
   console.log(`putting ${req.params.blogpostid}`);
   let putdata = req.body;
   BlogService.update(req.params.blogpostid, putdata)
@@ -98,14 +98,14 @@ router.put('/post/:blogpostid/edit', (req, res, next)=>{
 
 
 
-// delete: Delete post
-router.delete('/post/:blogpostid/delete', (req, res, next)=>{
+// DELETE: Delete post
+router.delete('/post/:blogpostid', (req, res, next)=>{
   let id = req.params.blogpostid;
   BlogService.delete(req.params.blogpostid)
     .then((blogPost) => {
       console.log(`Deleted post: ${id}`);
       res.status(200);
-      res.send(JSON.stringify(blogPost));
+      res.json(blogPost);
    })
     .catch((error) => {
       res.status(404);
