@@ -102,7 +102,7 @@ router.get('/post/:blogpostid/edit', (req, res, next)=>{
 
 
 // Blog post edit (form submission)
-router.post('/post/:blogpostid', (req, res, next)=>{
+router.post('/post/:blogpostid/edit', (req, res, next)=>{
   const data = {
     postTitle: req.body.postTitle,
     postContent: req.body.postContent,
@@ -121,7 +121,7 @@ router.post('/post/:blogpostid', (req, res, next)=>{
 
 
 // Blog post delete (form submission)
-router.get('/post/:blogpostid', (req, res, next)=>{
+router.get('/post/:blogpostid/delete', (req, res, next)=>{
   BlogService.delete(req.params.blogpostid)
     .then((obj) => {
       res.redirect('/blog');

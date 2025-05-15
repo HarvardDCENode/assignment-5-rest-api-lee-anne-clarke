@@ -49,7 +49,7 @@
         retrievedNewBlogPost.imgDescription += ' appended by the AJAX API ';
         let updatedBlogPost = await callAPI(
           'PUT',
-          `/api/blog/post/${retrievedNewBlogPost._id}`, 
+          `/api/blog/post/${retrievedNewBlogPost._id}/edit`, 
           null, 
           retrievedNewBlogPost
         )
@@ -71,7 +71,7 @@
         // delete
         let deletedBlogPost = await callAPI(
           'DELETE', 
-          `/api/blog/post/${retrievedUpdatedBlogPost._id}`, 
+          `/api/blog/post/${retrievedUpdatedBlogPost._id}/delete`, 
           null, 
           null
         )
